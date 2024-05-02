@@ -17,7 +17,6 @@ public class ProjArqT1 {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjArqT1.class, args);
-		SpringCliente.run(ProjArqT1.class, args);
 	}
 
 	@Bean
@@ -30,23 +29,6 @@ public class ProjArqT1 {
 	}
 
 	void genericApplicationContext(BeanDefinitionRegistry beanRegistry) {
-		ClassPathBeanDefinitionScanner beanDefinitionScanner = new ClassPathBeanDefinitionScanner(beanRegistry);
-		beanDefinitionScanner.addIncludeFilter(removeModelAndEntitiesFilter());
-		beanDefinitionScanner.scan("com.t1.t1.adapter");
-		beanDefinitionScanner.scan("com.t1.t1.application");
-		beanDefinitionScanner.scan("com.t1.t1.domain");
-	}
-
-	@Bean
-	BeanFactoryPostProcessor beanFactoryPostProcessor(ClienteContext beanRegistry) {
-		return beanFactory -> {
-			genericClienteContext(
-					(BeanDefinitionRegistry) ((AnnotationConfigServletWebServerClienteContext) beanRegistry)
-							.getBeanFactory());
-		};
-	}
-
-	void genericClienteContext(BeanDefinitionRegistry beanRegistry) {
 		ClassPathBeanDefinitionScanner beanDefinitionScanner = new ClassPathBeanDefinitionScanner(beanRegistry);
 		beanDefinitionScanner.addIncludeFilter(removeModelAndEntitiesFilter());
 		beanDefinitionScanner.scan("com.t1.t1.adapter");

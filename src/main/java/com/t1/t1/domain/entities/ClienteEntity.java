@@ -1,15 +1,15 @@
 package com.t1.t1.domain.entities;
 
-public class AplicativoEntity {
+public class ClienteEntity {
 
     private Long id;
     private String nome;
     private String email;
 
-    public AplicativoEntity() {
+    public ClienteEntity() {
     }
 
-    public AplicativoEntity(Long id, String nome, String email) {
+    public ClienteEntity(Long id, String nome, String email) {
         this.id = id;
         this.nome = nome;
         this.email = email;

@@ -1,4 +1,4 @@
-package com.t1.t1.cliente.dtos;
+package com.t1.t1.application.dtos;
 
 public class ClienteDTO {
     private long id;

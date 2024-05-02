@@ -5,11 +5,11 @@ import com.t1.t1.domain.services.ClienteService;
 
 import java.util.List;
 
-public class ListarClientesUseCase {
+public class ListarClienteUseCase {
 
     final ClienteService clienteService;
 
-    public ListarClientesUseCase(ClienteService clienteService) {
+    public ListarClienteUseCase(ClienteService clienteService) {
         this.clienteService = clienteService;
     }
 

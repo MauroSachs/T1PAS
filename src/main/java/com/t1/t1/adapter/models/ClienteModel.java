@@ -21,7 +21,7 @@ public class ClienteModel {
     public ClienteModel() {
     }
 
-    public ClienteModel(ClienteEntity Cliente) {
+    public ClienteModel(ClienteEntity cliente) {
         this.id = cliente.getId();
         this.nome = cliente.getNome();
         this.email = cliente.getEmail();

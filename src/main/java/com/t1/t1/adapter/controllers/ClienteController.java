@@ -4,7 +4,7 @@ import com.t1.t1.application.dtos.ClienteDTO;
 import com.t1.t1.application.dtos.ClienteRequestDTO;
 import com.t1.t1.application.usecases.cliente.AlterarClienteUseCase;
 import com.t1.t1.application.usecases.cliente.CreateClienteUseCase;
-import com.t1.t1.application.usecases.cliente.ListarClientesUseCase;
+import com.t1.t1.application.usecases.cliente.ListarClienteUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +17,10 @@ import java.util.List;
 public class ClienteController {
 
     private final CreateClienteUseCase createClienteUseCase;
-    private final ListarClientesUseCase listarTodosClientesUseCase;
+    private final ListarClienteUseCase listarTodosClientesUseCase;
     private final AlterarClienteUseCase alterarClienteUseCase;
 
-    public ClienteController(CreateClienteUseCase createClienteUseCase, ListarClientesUseCase listarClientesUseCase, AlterarClienteUseCase alterarClienteUseCase) {
+    public ClienteController(CreateClienteUseCase createClienteUseCase, ListarClienteUseCase listarClientesUseCase, AlterarClienteUseCase alterarClienteUseCase) {
         this.createClienteUseCase = createClienteUseCase;
         this.listarTodosClientesUseCase = listarClientesUseCase;
         this.alterarClienteUseCase = alterarClienteUseCase;
