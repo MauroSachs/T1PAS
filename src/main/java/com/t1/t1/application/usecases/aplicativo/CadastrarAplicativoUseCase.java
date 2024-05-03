@@ -5,11 +5,11 @@ import com.t1.t1.application.dtos.AplicativoRequestDTO;
 import com.t1.t1.domain.entities.AplicativoEntity;
 import com.t1.t1.domain.services.AplicativoService;
 
-public class CreateAplicativoUseCase {
+public class CadastrarAplicativoUseCase {
 
     final AplicativoService aplicativoService;
 
-    public CreateAplicativoUseCase(AplicativoService aplicativoService) {
+    public CadastrarAplicativoUseCase(AplicativoService aplicativoService) {
         this.aplicativoService = aplicativoService;
     }
 
