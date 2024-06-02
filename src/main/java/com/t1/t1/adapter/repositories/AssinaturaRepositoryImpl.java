@@ -6,6 +6,7 @@ import com.t1.t1.domain.entities.AssinaturaEntity;
 import com.t1.t1.domain.repositories.AssinaturaRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class AssinaturaRepositoryImpl implements AssinaturaRepository {
@@ -44,13 +45,19 @@ public class AssinaturaRepositoryImpl implements AssinaturaRepository {
     }
 
     @Override
-    public List<AssinaturaEntity> findByCliente(Long clienteId) {
-        return datasourcesAssinaturaLocal.findByCliente(clienteId).stream().map(AssinaturaModel::toEntity).collect(Collectors.toList());
+    public List<AssinaturaEntity> findAllByCliente(Long clienteId) {
+        return datasourcesAssinaturaLocal.findAllByAplicativo(clienteId).stream().map(AssinaturaModel::toEntity).collect(Collectors.toList());
     }
 
     @Override
-    public List<AssinaturaEntity> findByAplicativo(Long aplicativoId) {
-        return datasourcesAssinaturaLocal.findByAplicativo(aplicativoId).stream().map(AssinaturaModel::toEntity).collect(Collectors.toList());
+    public AssinaturaEntity findByClienteAndAplicativo(Long clienteId, Long aplicativoId) {
+        Optional<AssinaturaModel> assinaturaModel = datasourcesAssinaturaLocal.findByClienteAndAplicativo(clienteId, aplicativoId);
+        return assinaturaModel.map(AssinaturaModel::toEntity).orElse(null);
+    }
+
+    @Override
+    public List<AssinaturaEntity> findAllByAplicativo(Long aplicativoId) {
+        return datasourcesAssinaturaLocal.findAllByAplicativo(aplicativoId).stream().map(AssinaturaModel::toEntity).collect(Collectors.toList());
     }
 
 }

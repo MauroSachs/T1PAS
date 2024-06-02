@@ -10,7 +10,9 @@ public interface AssinaturaRepository {
     public AssinaturaEntity updateAssinatura(AssinaturaEntity assinatura);
     public void deleteAssinatura(Long id);
     public AssinaturaEntity getAssinatura(Long id);
+    public AssinaturaEntity findByClienteAndAplicativo(Long clienteId, Long aplicativoId);
     public List<AssinaturaEntity> getAssinaturas();
-    public List<AssinaturaEntity> findByCliente(Long clienteId);
-    public List<AssinaturaEntity> findByAplicativo(Long aplicativoId);
+    public List<AssinaturaEntity> findAllByCliente(Long clienteId);
+    public List<AssinaturaEntity> findAllByAplicativo(Long aplicativoId);
+
 }

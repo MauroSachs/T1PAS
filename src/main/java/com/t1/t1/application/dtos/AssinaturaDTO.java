@@ -1,5 +1,7 @@
 package com.t1.t1.application.dtos;
 
+import com.t1.t1.domain.entities.AssinaturaEntity;
+
 import java.time.LocalDateTime;
 
 public class AssinaturaDTO {
@@ -38,6 +40,16 @@ public class AssinaturaDTO {
 
     public LocalDateTime getFimVigencia() {
         return fimVigencia;
+    }
+
+    public static AssinaturaDTO fromEntity(AssinaturaEntity assinatura) {
+        return new AssinaturaDTO(
+                assinatura.getId(),
+                assinatura.getCliente().getId(),
+                assinatura.getAplicativo().getId(),
+                assinatura.getInicioVigencia(),
+                assinatura.getFimVigencia()
+        );
     }
 }
 

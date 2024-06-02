@@ -21,10 +21,15 @@ public class AssinaturaService {
         }
 
         public AssinaturaEntity findByClienteAndAplicativo(Long clienteId, Long aplicativoId) {
-            return assinaturaRepository.findByCliente(clienteId).stream()
-                    .filter(assinatura -> assinatura.getAplicativo().getId().equals(aplicativoId))
-                    .findFirst()
-                    .orElse(null);
+            return assinaturaRepository.findByClienteAndAplicativo(clienteId, aplicativoId);
+        }
+
+        public List<AssinaturaEntity> findAllByCliente(Long clienteId) {
+            return assinaturaRepository.findAllByCliente(clienteId);
+        }
+
+        public List<AssinaturaEntity> findAllByAplicativo(Long aplicativoId) {
+            return assinaturaRepository.findAllByAplicativo(aplicativoId);
         }
 
         public AssinaturaEntity createAssinatura(ClienteEntity cliente, AplicativoEntity aplicativo) {
@@ -54,5 +59,17 @@ public class AssinaturaService {
         return assinaturaRepository.getAssinaturas().stream()
                 .filter(assinatura -> assinatura.getFimVigencia().isBefore(LocalDateTime.now()))
                 .toList();
+    }
+
+    public Boolean isValid(Long idAssinatura) {
+            AssinaturaEntity assinatura = getAssinatura(idAssinatura);
+
+            return assinatura != null && assinatura.getFimVigencia().isAfter(LocalDateTime.now());
+    }
+
+    public Boolean isValid(Long idCliente, Long idAplicativo) {
+            AssinaturaEntity assinatura = findByClienteAndAplicativo(idCliente, idAplicativo);
+
+            return assinatura != null && assinatura.getFimVigencia().isAfter(LocalDateTime.now());
     }
 }
