@@ -49,7 +49,6 @@ public class AplicativoController {
         }
     }
 
-    //atualiza custo
     @PostMapping(value = "/atualizacusto/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AplicativoDTO> atualizaCusto(@PathVariable Long id, @RequestBody AplicativoRequestDTO request) {
         try {
@@ -59,8 +58,6 @@ public class AplicativoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
-
 
     @PatchMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AplicativoDTO> alterar(@PathVariable Long id, @RequestBody AplicativoRequestDTO request) {

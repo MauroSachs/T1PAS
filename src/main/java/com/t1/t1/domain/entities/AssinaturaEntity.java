@@ -1,6 +1,8 @@
 package com.t1.t1.domain.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AssinaturaEntity {
 
@@ -8,6 +10,7 @@ public class AssinaturaEntity {
     private LocalDateTime inicioVigencia;
     private LocalDateTime fimVigencia;
     private AplicativoEntity aplicativo;
+    private List<PagamentoEntity> pagamentos;
     private ClienteEntity cliente;
 
     public AssinaturaEntity() {
@@ -19,6 +22,7 @@ public class AssinaturaEntity {
         this.fimVigencia = fimVigencia;
         this.aplicativo = aplicativo;
         this.cliente = cliente;
+        this.pagamentos = new ArrayList<>();
     }
 
     public Long getId() {
@@ -59,5 +63,13 @@ public class AssinaturaEntity {
 
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
+    }
+
+    public List<PagamentoEntity> getPagamentos() {
+        return pagamentos;
+    }
+
+    public void setPagamentos(List<PagamentoEntity> pagamentos) {
+        this.pagamentos = pagamentos;
     }
 }

@@ -1,14 +1,10 @@
 package com.t1.t1.adapter.models;
 
-import java.time.LocalDate;
-
 import com.t1.t1.domain.entities.PagamentoEntity;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -16,7 +12,10 @@ public class PagamentoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @ManyToOne
     private AssinaturaModel assinatura;
+
     private double valorPago;
     private LocalDate dataPagamento;
     private String promocao;

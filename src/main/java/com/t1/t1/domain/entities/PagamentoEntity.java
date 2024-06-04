@@ -3,7 +3,7 @@ package com.t1.t1.domain.entities;
 import java.time.LocalDate;
 
 public class PagamentoEntity {
-    private long id;
+    private Long id;
     private AssinaturaEntity assinatura;
     private double valorPago;
     private LocalDate dataPagamento;
@@ -12,7 +12,7 @@ public class PagamentoEntity {
     public PagamentoEntity() {
     }
 
-    public PagamentoEntity(long id , AssinaturaEntity assinatura, double valorPago, LocalDate dataPagamento, String promocao) {
+    public PagamentoEntity(Long id , AssinaturaEntity assinatura, double valorPago, LocalDate dataPagamento, String promocao) {
         this.id = id;
         this.assinatura = assinatura;
         this.valorPago = valorPago;
@@ -20,11 +20,11 @@ public class PagamentoEntity {
         this.promocao = promocao;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
