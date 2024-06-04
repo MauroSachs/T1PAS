@@ -22,9 +22,9 @@ public class AplicativoController {
     private final AlterarAplicativoUseCase alterarAplicativoUseCase;
     private final AtualizarCustoUseCase atualizarCustoUseCase;
 
-    public AplicativoController(CadastrarAplicativoUseCase cadastrarAplicativoUseCase, ListarAplicativosUseCase listarTodosAplicativosUseCase, AlterarAplicativoUseCase alterarAplicativoUseCase, AtualizarCustoUseCase atualizarCustoUseCase) {
+    public AplicativoController(CadastrarAplicativoUseCase cadastrarAplicativoUseCase, ListarAplicativosUseCase listarAplicativosUseCase, AlterarAplicativoUseCase alterarAplicativoUseCase, AtualizarCustoUseCase atualizarCustoUseCase) {
         this.cadastrarAplicativoUseCase = cadastrarAplicativoUseCase;
-        this.listarTodosAplicativosUseCase = listarTodosAplicativosUseCase;
+        this.listarTodosAplicativosUseCase = listarAplicativosUseCase;
         this.alterarAplicativoUseCase = alterarAplicativoUseCase;
         this.atualizarCustoUseCase = atualizarCustoUseCase;
     }
