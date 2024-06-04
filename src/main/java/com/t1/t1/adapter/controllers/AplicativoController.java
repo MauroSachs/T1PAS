@@ -4,7 +4,7 @@ import com.t1.t1.application.dtos.AplicativoDTO;
 import com.t1.t1.application.dtos.AplicativoRequestDTO;
 import com.t1.t1.application.usecases.aplicativo.AlterarAplicativoUseCase;
 import com.t1.t1.application.usecases.aplicativo.AtualizarCustoUseCase;
-import com.t1.t1.application.usecases.aplicativo.CreateAplicativoUseCase;
+import com.t1.t1.application.usecases.aplicativo.CadastrarAplicativoUseCase;
 import com.t1.t1.application.usecases.aplicativo.ListarAplicativosUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,16 +17,26 @@ import java.util.List;
 @RequestMapping("/servcad/aplicativos")
 public class AplicativoController {
 
-    private final CreateAplicativoUseCase createAplicativoUseCase;
+    private final CadastrarAplicativoUseCase cadastrarAplicativoUseCase;
     private final ListarAplicativosUseCase listarTodosAplicativosUseCase;
     private final AlterarAplicativoUseCase alterarAplicativoUseCase;
     private final AtualizarCustoUseCase atualizarCustoUseCase;
 
-    public AplicativoController(CreateAplicativoUseCase createAplicativoUseCase, ListarAplicativosUseCase listarTodosAplicativosUseCase, AlterarAplicativoUseCase alterarAplicativoUseCase, AtualizarCustoUseCase atualizarCustoUseCase) {
-        this.createAplicativoUseCase = createAplicativoUseCase;
+    public AplicativoController(CadastrarAplicativoUseCase cadastrarAplicativoUseCase, ListarAplicativosUseCase listarTodosAplicativosUseCase, AlterarAplicativoUseCase alterarAplicativoUseCase, AtualizarCustoUseCase atualizarCustoUseCase) {
+        this.cadastrarAplicativoUseCase = cadastrarAplicativoUseCase;
         this.listarTodosAplicativosUseCase = listarTodosAplicativosUseCase;
         this.alterarAplicativoUseCase = alterarAplicativoUseCase;
         this.atualizarCustoUseCase = atualizarCustoUseCase;
+    }
+    
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AplicativoDTO> create(@RequestBody AplicativoRequestDTO request) {
+        try {
+            AplicativoDTO aplicativoDTO = cadastrarAplicativoUseCase.call(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(aplicativoDTO);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -34,16 +44,6 @@ public class AplicativoController {
         try {
             List<AplicativoDTO> aplicativos = listarTodosAplicativosUseCase.call();
             return ResponseEntity.ok(aplicativos);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AplicativoDTO> create(@RequestBody AplicativoRequestDTO request) {
-        try {
-            AplicativoDTO aplicativoDTO = createAplicativoUseCase.call(request);
-            return ResponseEntity.status(HttpStatus.CREATED).body(aplicativoDTO);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

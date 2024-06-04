@@ -5,11 +5,11 @@ import com.t1.t1.application.dtos.ClienteRequestDTO;
 import com.t1.t1.domain.entities.ClienteEntity;
 import com.t1.t1.domain.services.ClienteService;
 
-public class CreateClienteUseCase {
+public class CadastrarClienteUseCase {
 
     final ClienteService clienteService;
 
-    public CreateClienteUseCase(ClienteService clienteService) {
+    public CadastrarClienteUseCase(ClienteService clienteService) {
         this.clienteService = clienteService;
     }
 
