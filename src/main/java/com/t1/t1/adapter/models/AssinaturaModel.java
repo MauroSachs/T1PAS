@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -21,6 +22,10 @@ public class AssinaturaModel {
 
     @OneToOne
     private ClienteModel cliente;
+
+    @OneToMany
+    private List<PagamentoModel> pagamentos;
+
 
     public AssinaturaModel() {
     }
