@@ -5,19 +5,28 @@ import java.time.LocalDate;
 public class PagamentoEntity {
     private Long id;
     private AssinaturaEntity assinatura;
-    private double valorPago;
     private LocalDate dataPagamento;
     private String promocao;
+    private Double valorEstornado, valorPago;
 
     public PagamentoEntity() {
     }
 
-    public PagamentoEntity(Long id , AssinaturaEntity assinatura, double valorPago, LocalDate dataPagamento, String promocao) {
+    public PagamentoEntity(Long id, AssinaturaEntity assinatura, LocalDate dataPagamento, String promocao, Double valorEstornado, Double valorPago) {
         this.id = id;
         this.assinatura = assinatura;
-        this.valorPago = valorPago;
         this.dataPagamento = dataPagamento;
         this.promocao = promocao;
+        this.valorEstornado = valorEstornado;
+        this.valorPago = valorPago;
+    }
+
+    public Double getValorEstornado() {
+        return valorEstornado;
+    }
+
+    public void setValorEstornado(Double valorEstornado) {
+        this.valorEstornado = valorEstornado;
     }
 
     public Long getId() {

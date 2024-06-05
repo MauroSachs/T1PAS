@@ -10,7 +10,7 @@ public interface AssinaturaDatasourcesLocal {
     AssinaturaModel createAssinatura(AssinaturaModel assinatura);
     void deleteAssinatura(Long id);
     AssinaturaModel getAssinatura(Long id);
-    AssinaturaModel updateAssinatura(AssinaturaModel assinatura);
+    AssinaturaModel save(AssinaturaModel assinatura);
     List<AssinaturaModel> getAssinaturas();
     List<AssinaturaModel> findAllByCliente(Long clienteId);
     List<AssinaturaModel> findAllByAplicativo(Long aplicativoId);

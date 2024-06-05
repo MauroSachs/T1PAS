@@ -5,7 +5,7 @@ import com.t1.t1.domain.entities.AssinaturaEntity;
 import com.t1.t1.domain.entities.ClienteEntity;
 import com.t1.t1.domain.repositories.AssinaturaRepository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public class AssinaturaService {
@@ -36,8 +36,8 @@ public class AssinaturaService {
             AssinaturaEntity assinatura = new AssinaturaEntity();
             assinatura.setCliente(cliente);
             assinatura.setAplicativo(aplicativo);
-            assinatura.setInicioVigencia(LocalDateTime.now());
-            assinatura.setFimVigencia(LocalDateTime.now().plusDays(7));
+            assinatura.setInicioVigencia(LocalDate.now());
+            assinatura.setFimVigencia(LocalDate.now().plusDays(7));
             return assinaturaRepository.createAssinatura(assinatura);
         }
 
@@ -46,30 +46,30 @@ public class AssinaturaService {
         }
 
         public AssinaturaEntity saveAssinatura(AssinaturaEntity assinatura) {
-            return assinaturaRepository.updateAssinatura(assinatura);
+            return assinaturaRepository.save(assinatura);
         }
 
     public List<AssinaturaEntity> listAssinaturasAtivas() {
         return assinaturaRepository.getAssinaturas().stream()
-                .filter(assinatura -> assinatura.getFimVigencia().isAfter(LocalDateTime.now()))
+                .filter(assinatura -> assinatura.getFimVigencia().isAfter(LocalDate.now()))
                 .toList();
     }
 
     public List<AssinaturaEntity> listAssinaturasCanceladas() {
         return assinaturaRepository.getAssinaturas().stream()
-                .filter(assinatura -> assinatura.getFimVigencia().isBefore(LocalDateTime.now()))
+                .filter(assinatura -> assinatura.getFimVigencia().isBefore(LocalDate.now()))
                 .toList();
     }
 
     public Boolean isValid(Long idAssinatura) {
             AssinaturaEntity assinatura = getAssinatura(idAssinatura);
 
-            return assinatura != null && assinatura.getFimVigencia().isAfter(LocalDateTime.now());
+            return assinatura != null && assinatura.getFimVigencia().isAfter(LocalDate.now());
     }
 
     public Boolean isValid(Long idCliente, Long idAplicativo) {
             AssinaturaEntity assinatura = findByClienteAndAplicativo(idCliente, idAplicativo);
 
-            return assinatura != null && assinatura.getFimVigencia().isAfter(LocalDateTime.now());
+            return assinatura != null && assinatura.getFimVigencia().isAfter(LocalDate.now());
     }
 }
