@@ -29,6 +29,6 @@ public class AlterarAplicativoUseCase {
         }
 
         aplicativoEntity = aplicativoService.saveAplicativo(aplicativoEntity);
-        return new AplicativoDTO(aplicativoEntity.getId(), aplicativoEntity.getNome(), aplicativoEntity.getCustoMensal());
+        return new AplicativoDTO(aplicativoEntity);
     }
 }

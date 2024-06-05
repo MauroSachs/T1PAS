@@ -15,8 +15,12 @@ public class ListarAplicativosUseCase {
 
     public List<AplicativoDTO> call() {
         return aplicativoService.listAplicativos().stream()
-                .map(aplicativoEntity -> new AplicativoDTO(aplicativoEntity.getId(), aplicativoEntity.getNome(), aplicativoEntity.getCustoMensal()))
+                .map(AplicativoDTO::new)
                 .toList();
     }
 
+
+    public AplicativoDTO buscaPorId(Long id) {
+        return new AplicativoDTO(aplicativoService.getAplicativo(id));
+    }
 }

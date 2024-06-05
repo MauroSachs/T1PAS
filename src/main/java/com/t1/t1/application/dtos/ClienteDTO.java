@@ -1,5 +1,7 @@
 package com.t1.t1.application.dtos;
 
+import com.t1.t1.domain.entities.ClienteEntity;
+
 public class ClienteDTO {
     private long id;
     private String nome;
@@ -8,10 +10,10 @@ public class ClienteDTO {
     public ClienteDTO() {
     }
 
-    public ClienteDTO(long id, String nome, String email) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
+    public ClienteDTO(ClienteEntity cliente) {
+        this.id = cliente.getId();
+        this.nome = cliente.getNome();
+        this.email = cliente.getEmail();
     }
 
     public long getId() {

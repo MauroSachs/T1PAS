@@ -15,8 +15,7 @@ public class ListarClienteUseCase {
 
     public List<ClienteDTO> call() {
         return clienteService.listClientes().stream()
-                .map(clienteEntity -> new ClienteDTO(clienteEntity.getId(), clienteEntity.getNome(), clienteEntity.getEmail()))
+                .map(ClienteDTO::new)
                 .toList();
     }
-
 }

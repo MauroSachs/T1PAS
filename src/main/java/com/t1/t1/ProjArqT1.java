@@ -39,6 +39,7 @@ public class ProjArqT1 {
 	static TypeFilter removeModelAndEntitiesFilter() {
 		return (MetadataReader mr, MetadataReaderFactory mrf) -> !mr.getClassMetadata().getClassName().endsWith("Model")
 				&& !mr.getClassMetadata().getClassName().endsWith("DTO")
+				&& !mr.getClassMetadata().getClassName().endsWith("Config")
 				&& !mr.getClassMetadata().getClassName().endsWith("Exception");
 	}
 }

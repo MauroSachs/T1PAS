@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 public class AplicativoModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private Double custoMensal;
@@ -22,7 +22,9 @@ public class AplicativoModel {
     }
 
     public AplicativoModel(AplicativoEntity aplicativo) {
-        this.id = aplicativo.getId();
+        if (aplicativo.getId() != null) {
+            this.id = aplicativo.getId();
+        }
         this.nome = aplicativo.getNome();
         this.custoMensal = aplicativo.getCustoMensal();
     }

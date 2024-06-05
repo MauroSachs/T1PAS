@@ -66,6 +66,9 @@ public class AssinaturaEntity {
     }
 
     public List<PagamentoEntity> getPagamentos() {
+        if (pagamentos == null) {
+            pagamentos = new ArrayList<>();
+        }
         return pagamentos;
     }
 

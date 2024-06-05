@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -12,15 +13,15 @@ import java.util.List;
 @Data
 public class AssinaturaModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate inicioVigencia;
     private LocalDate fimVigencia;
 
-    @OneToOne
+    @ManyToOne
     private AplicativoModel aplicativo;
 
-    @OneToOne
+    @ManyToOne
     private ClienteModel cliente;
 
     @OneToMany
@@ -31,14 +32,31 @@ public class AssinaturaModel {
     }
 
     public AssinaturaModel(AssinaturaEntity assinatura) {
-        this.id = assinatura.getId();
+        if (assinatura.getId() != null) {
+            this.id = assinatura.getId();
+        }
+
         this.inicioVigencia = assinatura.getInicioVigencia();
         this.fimVigencia = assinatura.getFimVigencia();
-        this.aplicativo = new AplicativoModel(assinatura.getAplicativo());
-        this.cliente = new ClienteModel(assinatura.getCliente());
+
+        if (assinatura.getAplicativo() != null) {
+            this.aplicativo = new AplicativoModel(assinatura.getAplicativo());
+        }
+
+        if (assinatura.getCliente() != null) {
+            this.cliente = new ClienteModel(assinatura.getCliente());
+        }
+
     }
 
     public AssinaturaEntity toEntity() {
-        return new AssinaturaEntity(this.id, this.inicioVigencia, this.fimVigencia, this.aplicativo.toEntity(), this.cliente.toEntity());
+        return new AssinaturaEntity(id, inicioVigencia, fimVigencia, aplicativo.toEntity(), cliente.toEntity());
+    }
+
+    public List<PagamentoModel> getPagamentos() {
+        if (pagamentos == null) {
+            pagamentos = new ArrayList<>();
+        }
+        return pagamentos;
     }
 }

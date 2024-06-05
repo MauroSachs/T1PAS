@@ -14,12 +14,12 @@ public class PagamentoDatasourcesLocalImpl implements PagamentoDatasourcesLocal{
 
     @Override
     public PagamentoModel save(PagamentoModel pagamentoModel) {
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        return jpaPagamentoRepository.save(pagamentoModel);
     }
 
     @Override
     public PagamentoModel findById(Long id) {
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return jpaPagamentoRepository.findById(id).orElse(null);
     }
     
 }

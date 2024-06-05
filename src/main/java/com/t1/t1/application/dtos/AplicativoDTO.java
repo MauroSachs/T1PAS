@@ -1,5 +1,7 @@
 package com.t1.t1.application.dtos;
 
+import com.t1.t1.domain.entities.AplicativoEntity;
+
 public class AplicativoDTO {
     private long id;
     private String nome;
@@ -8,10 +10,10 @@ public class AplicativoDTO {
     public AplicativoDTO() {
     }
 
-    public AplicativoDTO(long id, String nome, Double custoMensal) {
-        this.id = id;
-        this.nome = nome;
-        this.custoMensal = custoMensal;
+    public AplicativoDTO(AplicativoEntity aplicativo) {
+        this.id = aplicativo.getId();
+        this.nome = aplicativo.getNome();
+        this.custoMensal = aplicativo.getCustoMensal();
     }
 
     public long getId() {

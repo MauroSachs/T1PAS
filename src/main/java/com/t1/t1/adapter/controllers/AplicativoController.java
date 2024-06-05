@@ -18,13 +18,13 @@ import java.util.List;
 public class AplicativoController {
 
     private final CadastrarAplicativoUseCase cadastrarAplicativoUseCase;
-    private final ListarAplicativosUseCase listarTodosAplicativosUseCase;
+    private final ListarAplicativosUseCase listarAplicativosUseCase;
     private final AlterarAplicativoUseCase alterarAplicativoUseCase;
     private final AtualizarCustoUseCase atualizarCustoUseCase;
 
     public AplicativoController(CadastrarAplicativoUseCase cadastrarAplicativoUseCase, ListarAplicativosUseCase listarAplicativosUseCase, AlterarAplicativoUseCase alterarAplicativoUseCase, AtualizarCustoUseCase atualizarCustoUseCase) {
         this.cadastrarAplicativoUseCase = cadastrarAplicativoUseCase;
-        this.listarTodosAplicativosUseCase = listarAplicativosUseCase;
+        this.listarAplicativosUseCase = listarAplicativosUseCase;
         this.alterarAplicativoUseCase = alterarAplicativoUseCase;
         this.atualizarCustoUseCase = atualizarCustoUseCase;
     }
@@ -42,8 +42,19 @@ public class AplicativoController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<AplicativoDTO>> listarTodos() {
         try {
-            List<AplicativoDTO> aplicativos = listarTodosAplicativosUseCase.call();
+            List<AplicativoDTO> aplicativos = listarAplicativosUseCase.call();
             return ResponseEntity.ok(aplicativos);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    //get by id
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AplicativoDTO> getById(@PathVariable Long id) {
+        try {
+            AplicativoDTO aplicativoDTO = listarAplicativosUseCase.buscaPorId(id);
+            return ResponseEntity.ok(aplicativoDTO);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

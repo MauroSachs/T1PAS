@@ -29,6 +29,6 @@ public class AlterarClienteUseCase {
         }
 
         clienteEntity = clienteService.saveCliente(clienteEntity);
-        return new ClienteDTO(clienteEntity.getId(), clienteEntity.getNome(), clienteEntity.getEmail());
+        return new ClienteDTO(clienteEntity);
     }
 }
