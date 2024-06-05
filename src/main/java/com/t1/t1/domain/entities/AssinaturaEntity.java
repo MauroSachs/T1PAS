@@ -1,9 +1,8 @@
 package com.t1.t1.domain.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalDate;
 
 public class AssinaturaEntity {
 
