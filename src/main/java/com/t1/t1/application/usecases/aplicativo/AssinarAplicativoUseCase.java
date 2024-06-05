@@ -1,7 +1,9 @@
 package com.t1.t1.application.usecases.aplicativo;
 
+import com.t1.t1.application.dtos.AplicativoDTO;
 import com.t1.t1.application.dtos.AssinaturaDTO;
 import com.t1.t1.application.dtos.AssinaturaRequestDTO;
+import com.t1.t1.application.dtos.ClienteDTO;
 import com.t1.t1.domain.entities.AssinaturaEntity;
 import com.t1.t1.domain.services.AplicativoService;
 import com.t1.t1.domain.services.AssinaturaService;
@@ -37,7 +39,7 @@ public class AssinarAplicativoUseCase {
         }
 
         var assinatura = assinaturaService.createAssinatura(cliente, aplicativo);
-        return new AssinaturaDTO(assinatura.getId(), assinatura.getCliente().getId(), assinatura.getAplicativo().getId(), assinatura.getInicioVigencia(), assinatura.getFimVigencia());
+        return new AssinaturaDTO(assinatura, new ClienteDTO(cliente), new AplicativoDTO(aplicativo));
 
     }
 }

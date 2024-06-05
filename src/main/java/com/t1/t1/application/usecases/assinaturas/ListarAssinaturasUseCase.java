@@ -1,7 +1,10 @@
 package com.t1.t1.application.usecases.assinaturas;
 
+import com.t1.t1.application.dtos.AplicativoDTO;
 import com.t1.t1.application.dtos.AssinaturaDTO;
 import com.t1.t1.application.dtos.AssinaturaTipoRequestDTO;
+import com.t1.t1.application.dtos.ClienteDTO;
+import com.t1.t1.domain.entities.AssinaturaEntity;
 import com.t1.t1.domain.services.AssinaturaService;
 
 import java.util.List;
@@ -15,21 +18,20 @@ public class ListarAssinaturasUseCase {
     }
 
     public List<AssinaturaDTO> call(AssinaturaTipoRequestDTO tipo) {
-        switch (tipo) {
-            case TODAS:
-                return assinaturaService.listAssinaturas().stream()
-                        .map(assinaturaEntity -> new AssinaturaDTO(assinaturaEntity.getId(), assinaturaEntity.getCliente().getId(), assinaturaEntity.getAplicativo().getId(), assinaturaEntity.getInicioVigencia(), assinaturaEntity.getFimVigencia()))
-                        .toList();
-            case ATIVAS:
-                return assinaturaService.listAssinaturasAtivas().stream()
-                        .map(assinaturaEntity -> new AssinaturaDTO(assinaturaEntity.getId(), assinaturaEntity.getCliente().getId(), assinaturaEntity.getAplicativo().getId(), assinaturaEntity.getInicioVigencia(), assinaturaEntity.getFimVigencia()))
-                        .toList();
-            case CANCELADAS:
-                return assinaturaService.listAssinaturasCanceladas().stream()
-                        .map(assinaturaEntity -> new AssinaturaDTO(assinaturaEntity.getId(), assinaturaEntity.getCliente().getId(), assinaturaEntity.getAplicativo().getId(), assinaturaEntity.getInicioVigencia(), assinaturaEntity.getFimVigencia()))
-                        .toList();
-            default:
-                throw new IllegalArgumentException("Tipo de assinatura inválido");
+        List<AssinaturaEntity> assinaturas;
+
+        if (tipo == AssinaturaTipoRequestDTO.ATIVAS) {
+            assinaturas = assinaturaService.listAssinaturasAtivas();
         }
+        else if (tipo == AssinaturaTipoRequestDTO.CANCELADAS) {
+            assinaturas = assinaturaService.listAssinaturasCanceladas();
+        }
+        else {
+            assinaturas = assinaturaService.listAssinaturas();
+        }
+
+        return assinaturas.stream()
+                .map(assinaturaEntity -> new AssinaturaDTO(assinaturaEntity, new ClienteDTO(assinaturaEntity.getCliente()), new AplicativoDTO(assinaturaEntity.getAplicativo())))
+                .toList();
     }
 }

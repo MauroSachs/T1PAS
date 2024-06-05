@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 public class ClienteModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
@@ -22,7 +22,10 @@ public class ClienteModel {
     }
 
     public ClienteModel(ClienteEntity cliente) {
-        this.id = cliente.getId();
+        if (cliente.getId() != null) {
+            this.id = cliente.getId();
+        }
+
         this.nome = cliente.getNome();
         this.email = cliente.getEmail();
     }

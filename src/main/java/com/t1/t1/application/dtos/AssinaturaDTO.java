@@ -6,50 +6,43 @@ import java.time.LocalDate;
 
 public class AssinaturaDTO {
     private Long id;
-    private Long idCliente;
-    private Long idAplicativo;
+    private ClienteDTO cliente;
+    private AplicativoDTO aplicativo;
     private LocalDate inicioVigencia;
     private LocalDate fimVigencia;
 
     public AssinaturaDTO() {
     }
 
-    public AssinaturaDTO(Long id, Long idCliente, Long idAplicativo, LocalDate inicioVigencia, LocalDate fimVigencia) {
-        this.id = id;
-        this.idCliente = idCliente;
-        this.idAplicativo = idAplicativo;
-        this.inicioVigencia = inicioVigencia;
-        this.fimVigencia = fimVigencia;
+    public AssinaturaDTO(AssinaturaEntity assinatura, ClienteDTO cliente, AplicativoDTO aplicativo) {
+        this.id = assinatura.getId();
+        this.cliente = cliente;
+        this.aplicativo = aplicativo;
+        this.inicioVigencia = assinatura.getInicioVigencia();
+        this.fimVigencia = assinatura.getFimVigencia();
     }
+
 
     public Long getId() {
         return id;
     }
 
-    public Long getIdCliente() {
-        return idCliente;
+    public ClienteDTO getCliente() {
+        return cliente;
     }
 
-    public Long getIdAplicativo() {
-        return idAplicativo;
+    public AplicativoDTO getAplicativo() {
+        return aplicativo;
     }
 
     public LocalDate getInicioVigencia() {
         return inicioVigencia;
     }
 
+
     public LocalDate getFimVigencia() {
         return fimVigencia;
     }
 
-    public static AssinaturaDTO fromEntity(AssinaturaEntity assinatura) {
-        return new AssinaturaDTO(
-                assinatura.getId(),
-                assinatura.getCliente().getId(),
-                assinatura.getAplicativo().getId(),
-                assinatura.getInicioVigencia(),
-                assinatura.getFimVigencia()
-        );
-    }
 }
 

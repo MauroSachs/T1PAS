@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Entity
 public class PagamentoModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne
@@ -24,8 +24,10 @@ public class PagamentoModel {
     }
 
     public PagamentoModel(PagamentoEntity pagamentoEntity) {
-        this.id = pagamentoEntity.getId();
-        this.assinatura = new AssinaturaModel(pagamentoEntity.getAssinatura());
+        if (pagamentoEntity.getId() != null) {
+            this.id = pagamentoEntity.getId();
+        }
+
         this.dataPagamento = pagamentoEntity.getDataPagamento();
         this.promocao = pagamentoEntity.getPromocao();
         this.valorEstornado = pagamentoEntity.getValorEstornado();

@@ -23,6 +23,6 @@ public class CadastrarClienteUseCase {
         clienteEntity.setEmail(cliente.email());
 
         clienteEntity = clienteService.createCliente(clienteEntity);
-        return new ClienteDTO(clienteEntity.getId(), clienteEntity.getNome(), clienteEntity.getEmail());
+        return new ClienteDTO(clienteEntity);
     }
 }

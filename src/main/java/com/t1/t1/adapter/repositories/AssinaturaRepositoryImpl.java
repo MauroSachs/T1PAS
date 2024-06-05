@@ -1,7 +1,9 @@
 package com.t1.t1.adapter.repositories;
 
 import com.t1.t1.adapter.datasources.AssinaturaDatasourcesLocal;
+import com.t1.t1.adapter.datasources.PagamentoDatasourcesLocal;
 import com.t1.t1.adapter.models.AssinaturaModel;
+import com.t1.t1.adapter.models.PagamentoModel;
 import com.t1.t1.domain.entities.AssinaturaEntity;
 import com.t1.t1.domain.repositories.AssinaturaRepository;
 
@@ -12,9 +14,11 @@ import java.util.stream.Collectors;
 public class AssinaturaRepositoryImpl implements AssinaturaRepository {
 
     final AssinaturaDatasourcesLocal datasourcesAssinaturaLocal;
+    final PagamentoDatasourcesLocal pagamentoDatasourcesLocal;
 
-    public AssinaturaRepositoryImpl(AssinaturaDatasourcesLocal datasourcesAssinaturaLocal) {
+    public AssinaturaRepositoryImpl(AssinaturaDatasourcesLocal datasourcesAssinaturaLocal, PagamentoDatasourcesLocal pagamentoDatasourcesLocal) {
         this.datasourcesAssinaturaLocal = datasourcesAssinaturaLocal;
+        this.pagamentoDatasourcesLocal = pagamentoDatasourcesLocal;
     }
 
     @Override
@@ -25,7 +29,15 @@ public class AssinaturaRepositoryImpl implements AssinaturaRepository {
 
     @Override
     public AssinaturaEntity save(AssinaturaEntity assinatura) {
-        AssinaturaModel assinaturaModel = new AssinaturaModel(assinatura);
+        AssinaturaModel  assinaturaModel = new AssinaturaModel(assinatura);
+
+        assinatura.getPagamentos().forEach(pagamento -> {
+            PagamentoModel pagamentoModel = pagamentoDatasourcesLocal.findById(pagamento.getId());
+            if (pagamentoModel != null) {
+                assinaturaModel.getPagamentos().add(pagamentoModel);
+                pagamentoModel.setAssinatura(assinaturaModel);
+            }
+        });
         return datasourcesAssinaturaLocal.save(assinaturaModel).toEntity();
     }
 
@@ -36,7 +48,10 @@ public class AssinaturaRepositoryImpl implements AssinaturaRepository {
 
     @Override
     public AssinaturaEntity getAssinatura(Long id) {
-        return datasourcesAssinaturaLocal.getAssinatura(id).toEntity();
+        AssinaturaModel assinaturaModel = datasourcesAssinaturaLocal.getAssinatura(id);
+        AssinaturaEntity assinatura = assinaturaModel.toEntity();
+        assinatura.setPagamentos(assinaturaModel.getPagamentos().stream().map(PagamentoModel::toEntity).collect(Collectors.toList()));
+        return assinatura;
     }
 
     @Override

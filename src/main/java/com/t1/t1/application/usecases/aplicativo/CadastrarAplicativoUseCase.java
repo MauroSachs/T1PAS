@@ -23,6 +23,6 @@ public class CadastrarAplicativoUseCase {
         aplicativoEntity.setCustoMensal(aplicativo.custoMensal());
 
         aplicativoEntity = aplicativoService.createAplicativo(aplicativoEntity);
-        return new AplicativoDTO(aplicativoEntity.getId(), aplicativoEntity.getNome(), aplicativoEntity.getCustoMensal());
+        return new AplicativoDTO(aplicativoEntity);
     }
 }
