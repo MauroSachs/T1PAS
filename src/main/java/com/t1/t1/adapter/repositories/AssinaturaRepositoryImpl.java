@@ -24,9 +24,9 @@ public class AssinaturaRepositoryImpl implements AssinaturaRepository {
     }
 
     @Override
-    public AssinaturaEntity updateAssinatura(AssinaturaEntity assinatura) {
+    public AssinaturaEntity save(AssinaturaEntity assinatura) {
         AssinaturaModel assinaturaModel = new AssinaturaModel(assinatura);
-        return datasourcesAssinaturaLocal.updateAssinatura(assinaturaModel).toEntity();
+        return datasourcesAssinaturaLocal.save(assinaturaModel).toEntity();
     }
 
     @Override

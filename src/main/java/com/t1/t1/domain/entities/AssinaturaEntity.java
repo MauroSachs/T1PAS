@@ -3,12 +3,13 @@ package com.t1.t1.domain.entities;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
 
 public class AssinaturaEntity {
 
     private Long id;
-    private LocalDateTime inicioVigencia;
-    private LocalDateTime fimVigencia;
+    private LocalDate inicioVigencia;
+    private LocalDate fimVigencia;
     private AplicativoEntity aplicativo;
     private List<PagamentoEntity> pagamentos;
     private ClienteEntity cliente;
@@ -16,7 +17,7 @@ public class AssinaturaEntity {
     public AssinaturaEntity() {
     }
 
-    public AssinaturaEntity(Long id, LocalDateTime inicioVigencia, LocalDateTime fimVigencia, AplicativoEntity aplicativo, ClienteEntity cliente) {
+    public AssinaturaEntity(Long id, LocalDate inicioVigencia, LocalDate fimVigencia, AplicativoEntity aplicativo, ClienteEntity cliente) {
         this.id = id;
         this.inicioVigencia = inicioVigencia;
         this.fimVigencia = fimVigencia;
@@ -33,19 +34,19 @@ public class AssinaturaEntity {
         this.id = id;
     }
 
-    public LocalDateTime getInicioVigencia() {
+    public LocalDate getInicioVigencia() {
         return inicioVigencia;
     }
 
-    public void setInicioVigencia(LocalDateTime inicioVigencia) {
+    public void setInicioVigencia(LocalDate inicioVigencia) {
         this.inicioVigencia = inicioVigencia;
     }
 
-    public LocalDateTime getFimVigencia() {
+    public LocalDate getFimVigencia() {
         return fimVigencia;
     }
 
-    public void setFimVigencia(LocalDateTime fimVigencia) {
+    public void setFimVigencia(LocalDate fimVigencia) {
         this.fimVigencia = fimVigencia;
     }
 

@@ -11,37 +11,37 @@ import com.t1.t1.domain.repositories.ClienteRepository;
 
 public class ClienteRepositoryImpl implements ClienteRepository {
 
-    final ClienteDatasourcesLocal datasourcesAlbumLocal;
+    final ClienteDatasourcesLocal datasourcesClienteLocal;
 
-    public ClienteRepositoryImpl(ClienteDatasourcesLocal datasourcesAlbumLocal) {
+    public ClienteRepositoryImpl(ClienteDatasourcesLocal datasourcesClienteLocal) {
 
-        this.datasourcesAlbumLocal = datasourcesAlbumLocal;
+        this.datasourcesClienteLocal = datasourcesClienteLocal;
     }
 
     @Override
     public ClienteEntity createCliente(ClienteEntity cliente) {
         ClienteModel clienteModel = new ClienteModel(cliente);
-        return datasourcesAlbumLocal.createCliente(clienteModel).toEntity();
+        return datasourcesClienteLocal.createCliente(clienteModel).toEntity();
     }
 
     @Override
     public ClienteEntity updateCliente(ClienteEntity cliente) {
         ClienteModel clienteModel = new ClienteModel(cliente);
-        return datasourcesAlbumLocal.updateCliente(clienteModel).toEntity();
+        return datasourcesClienteLocal.updateCliente(clienteModel).toEntity();
     }
 
     @Override
     public void deleteCliente(Long id) {
-        datasourcesAlbumLocal.deleteCliente(id);
+        datasourcesClienteLocal.deleteCliente(id);
     }
 
     @Override
     public ClienteEntity getCliente(Long id) {
-        return datasourcesAlbumLocal.getCliente(id).toEntity();
+        return datasourcesClienteLocal.getCliente(id).toEntity();
     }
 
     @Override
     public List<ClienteEntity> getClientes() {
-        return datasourcesAlbumLocal.getClientes().stream().map(ClienteModel::toEntity).collect(Collectors.toList());
+        return datasourcesClienteLocal.getClientes().stream().map(ClienteModel::toEntity).collect(Collectors.toList());
     }
 }

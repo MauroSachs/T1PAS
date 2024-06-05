@@ -37,7 +37,7 @@ public class AssinaturaDatasourcesLocalImpl implements AssinaturaDatasourcesLoca
     }
 
     @Override
-    public AssinaturaModel updateAssinatura(AssinaturaModel assinaturaModel) {
+    public AssinaturaModel save(AssinaturaModel assinaturaModel) {
         return jpaAssinaturaRepository.save(assinaturaModel);
     }
 
