@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface AssinaturaRepository {
 
-    public AssinaturaEntity createAssinatura(AssinaturaEntity assinatura);
-    public AssinaturaEntity updateAssinatura(AssinaturaEntity assinatura);
-    public void deleteAssinatura(Long id);
-    public AssinaturaEntity getAssinatura(Long id);
-    public AssinaturaEntity findByClienteAndAplicativo(Long clienteId, Long aplicativoId);
-    public List<AssinaturaEntity> getAssinaturas();
-    public List<AssinaturaEntity> findAllByCliente(Long clienteId);
-    public List<AssinaturaEntity> findAllByAplicativo(Long aplicativoId);
+     AssinaturaEntity createAssinatura(AssinaturaEntity assinatura);
+     AssinaturaEntity save(AssinaturaEntity assinatura);
+     void deleteAssinatura(Long id);
+     AssinaturaEntity getAssinatura(Long id);
+     AssinaturaEntity findByClienteAndAplicativo(Long clienteId, Long aplicativoId);
+     List<AssinaturaEntity> getAssinaturas();
+     List<AssinaturaEntity> findAllByCliente(Long clienteId);
+     List<AssinaturaEntity> findAllByAplicativo(Long aplicativoId);
 
 }

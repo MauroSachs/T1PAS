@@ -4,7 +4,7 @@ import com.t1.t1.domain.entities.AssinaturaEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -14,8 +14,8 @@ public class AssinaturaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private LocalDateTime inicioVigencia;
-    private LocalDateTime fimVigencia;
+    private LocalDate inicioVigencia;
+    private LocalDate fimVigencia;
 
     @OneToOne
     private AplicativoModel aplicativo;

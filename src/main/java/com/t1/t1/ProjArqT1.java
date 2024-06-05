@@ -36,9 +36,9 @@ public class ProjArqT1 {
 		beanDefinitionScanner.scan("com.t1.t1.domain");
 	}
 
-	//filtra classes que terminam com Model ou DTO
 	static TypeFilter removeModelAndEntitiesFilter() {
-		return (MetadataReader mr, MetadataReaderFactory mrf) -> !mr.getClassMetadata()
-				.getClassName().endsWith("Model") && !mr.getClassMetadata().getClassName().endsWith("DTO");
+		return (MetadataReader mr, MetadataReaderFactory mrf) -> !mr.getClassMetadata().getClassName().endsWith("Model")
+				&& !mr.getClassMetadata().getClassName().endsWith("DTO")
+				&& !mr.getClassMetadata().getClassName().endsWith("Exception");
 	}
 }
