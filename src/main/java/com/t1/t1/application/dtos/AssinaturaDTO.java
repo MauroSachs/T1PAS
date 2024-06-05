@@ -2,19 +2,19 @@ package com.t1.t1.application.dtos;
 
 import com.t1.t1.domain.entities.AssinaturaEntity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class AssinaturaDTO {
     private Long id;
     private Long idCliente;
     private Long idAplicativo;
-    private LocalDateTime inicioVigencia;
-    private LocalDateTime fimVigencia;
+    private LocalDate inicioVigencia;
+    private LocalDate fimVigencia;
 
     public AssinaturaDTO() {
     }
 
-    public AssinaturaDTO(Long id, Long idCliente, Long idAplicativo, LocalDateTime inicioVigencia, LocalDateTime fimVigencia) {
+    public AssinaturaDTO(Long id, Long idCliente, Long idAplicativo, LocalDate inicioVigencia, LocalDate fimVigencia) {
         this.id = id;
         this.idCliente = idCliente;
         this.idAplicativo = idAplicativo;
@@ -34,11 +34,11 @@ public class AssinaturaDTO {
         return idAplicativo;
     }
 
-    public LocalDateTime getInicioVigencia() {
+    public LocalDate getInicioVigencia() {
         return inicioVigencia;
     }
 
-    public LocalDateTime getFimVigencia() {
+    public LocalDate getFimVigencia() {
         return fimVigencia;
     }
 

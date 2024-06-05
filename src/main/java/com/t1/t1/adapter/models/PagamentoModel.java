@@ -16,7 +16,7 @@ public class PagamentoModel {
     @ManyToOne
     private AssinaturaModel assinatura;
 
-    private double valorPago;
+    private Double valorEstornado, valorPago;
     private LocalDate dataPagamento;
     private String promocao;
 
@@ -26,12 +26,13 @@ public class PagamentoModel {
     public PagamentoModel(PagamentoEntity pagamentoEntity) {
         this.id = pagamentoEntity.getId();
         this.assinatura = new AssinaturaModel(pagamentoEntity.getAssinatura());
-        this.valorPago = pagamentoEntity.getValorPago();
         this.dataPagamento = pagamentoEntity.getDataPagamento();
         this.promocao = pagamentoEntity.getPromocao();
+        this.valorEstornado = pagamentoEntity.getValorEstornado();
+        this.valorPago = pagamentoEntity.getValorPago();
     }
 
     public PagamentoEntity toEntity() {
-        return new PagamentoEntity(this.id, this.assinatura.toEntity(), this.valorPago, this.dataPagamento, this.promocao);
+        return new PagamentoEntity(this.id, this.assinatura.toEntity(), this.dataPagamento, this.promocao, this.valorEstornado, this.valorPago);
     }
 }

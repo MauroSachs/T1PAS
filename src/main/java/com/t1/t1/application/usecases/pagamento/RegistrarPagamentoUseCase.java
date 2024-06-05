@@ -8,10 +8,8 @@ import com.t1.t1.domain.exceptions.ValorIncorretoException;
 import com.t1.t1.domain.services.AssinaturaService;
 import com.t1.t1.domain.services.PagamentoService;
 
-import static com.t1.t1.application.dtos.PagamentoStatus.PAGAMENTO_OK;
-import static com.t1.t1.application.dtos.PagamentoStatus.VALOR_INCORRETO;
-
-import org.apache.catalina.connector.Request;
+import static com.t1.t1.application.dtos.PagamentoStatusDTO.PAGAMENTO_OK;
+import static com.t1.t1.application.dtos.PagamentoStatusDTO.VALOR_INCORRETO;
 
 public class RegistrarPagamentoUseCase {
     

@@ -3,7 +3,7 @@ import java.time.LocalDate;
 
 public class PagamentoDTO {
     private Long id;
-    private PagamentoStatus status;
+    private PagamentoStatusDTO status;
     private LocalDate dataPagamento; 
     private Double valorEstornado, valorPago;
     private String promocao;
@@ -11,7 +11,7 @@ public class PagamentoDTO {
     public PagamentoDTO() {
     }
 
-    public PagamentoDTO(Long id, PagamentoStatus status, LocalDate dataPagamento, Double valorEstornado, Double valorPago, String promocao) {
+    public PagamentoDTO(Long id, PagamentoStatusDTO status, LocalDate dataPagamento, Double valorEstornado, Double valorPago, String promocao) {
         this.id = id;
         this.status = status;
         this.dataPagamento = dataPagamento;
@@ -32,7 +32,7 @@ public class PagamentoDTO {
         return id;
     }
 
-    public PagamentoStatus getStatus() {
+    public PagamentoStatusDTO getStatus() {
         return status;
     }
 
@@ -48,7 +48,7 @@ public class PagamentoDTO {
         this.id = id;
     }
 
-    public void setStatus(PagamentoStatus status) {
+    public void setStatus(PagamentoStatusDTO status) {
         this.status = status;
     }
 
